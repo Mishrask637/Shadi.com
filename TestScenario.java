@@ -23,8 +23,7 @@ import io.appium.java_client.touch.offset.PointOption;
 public class TestScenario {
 	 
 	static boolean isavailable = false;
-	
-	//@BeforeClass
+
 	public void startServer() {
 		CommandLine cmd = new CommandLine("C:\\Program Files\\nodejs\\node.exe");
 		cmd.addArgument("C:\\Users\\LENOVO\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"); // C:\\Program
@@ -149,7 +148,9 @@ public class TestScenario {
 		
 		Thread.sleep(2000);
 		
-		new TouchAction(driver).press(PointOption.point(121,1475)).waitAction().moveTo(PointOption.point(521,707)).release().perform();
+		driver.findElement(MobileBy.AndroidUIAutomator(
+		        "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+		         ".scrollIntoView(new UiSelector().textContains(\"New Matches\"))"));
 		
 		assertEquals(true, new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(MobileBy.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.shaadi.android:id/recyclerView\"]/android.widget.FrameLayout[2]//android.widget.TextView[@resource-id=\"com.shaadi.android:id/tv_title\"]"))).isDisplayed());
 
@@ -181,7 +182,7 @@ public class TestScenario {
 		driver.findElement(MobileBy.id("com.shaadi.android:id/btn_logout")).click();
 		
 		
-		assertEquals(true, driver.findElement(MobileBy.id("com.shaadi.android:id/btn_login")).getText());
+		assertEquals(true, driver.findElement(MobileBy.id("com.shaadi.android:id/btn_login")).isEnabled());
 
 		driver.quit();
 		
