@@ -158,7 +158,7 @@ public class TestScenario {
 		
 		Thread.sleep(2000);
 		
-		driver.findElements(MobileBy.id("com.shaadi.android:id/imageView12")).get(4).click();
+		driver.findElements(MobileBy.id("com.shaadi.android:id/imageView12")).get(3).click();
 		
 		new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(MobileBy.id("com.shaadi.android:id/btnConnect")));
 
